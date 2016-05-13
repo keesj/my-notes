@@ -8,3 +8,7 @@ Command line tricks
 
 
 Generate a good password:
+
+.. literalinclude:: bin/mkpa
+	:language: shell
+

@@ -1,0 +1,12 @@
+PWLEN=16 ; 
+
+#
+# define extarandom in your bashrc (assuming randong might not always
+# be random
+#
+( dd if=/dev/random bs=1 count="$PWLEN" 2>/dev/null; echo "$extrarandom" ) \
+	| sha256sum  \
+	| xxd -r -p \
+	| base64 \
+	| head -c "$PWLEN"
+echo
