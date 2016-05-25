@@ -16,14 +16,12 @@ First install pyboms in pybombs in ~/opt/pip and add the paths to PYTHONPATH and
 
 install pybombs::
 
-	pip install \
-		--install-option="--prefix=${HOME}/opt/pip" \
-		git+https://github.com/gnuradio/pybombs.git
+	pip install git+https://github.com/gnuradio/pybombs.git
 
 and add the following to you bashrc to make it understand where code can be found::
 
-	export PYTHONPATH="${PYTHONPATH}:${HOME}/opt/pip/lib/python2.7/site-packages"
-	export PATH="${PATH}:${HOME}/opt/pip/bin"
+	export PATH="${PATH}:${HOME}/.local/bin"
+
 
 Add the default recipes::
 
@@ -54,4 +52,5 @@ to udev. For rtl-sdr for example::
 
 	cd ~/projects/sdr
 	sudo cp ./src/rtl-sdr/rtl-sdr.rules /etc/udev/rules.d/
+	sudo cp src/hackrf/host/libhackrf/53-hackrf.rules /etc/udev/rules.d/
 	sudo udevadm control --reload
