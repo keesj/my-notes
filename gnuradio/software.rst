@@ -1,5 +1,5 @@
 SDR software
-=================
+============
 
 GQRX
 ----
@@ -19,3 +19,16 @@ cat ~/.pybombs/config.yml::
 	  gr-recipes: git+https://github.com/gnuradio/gr-recipes.git
 
 .. _GQRX: http://gqrx.dk/ 
+
+
+
+Web based UI:
+csdr 
+
+Software Defined Radio Academy 
+https://www.youtube.com/playlist?list=UU1GAlgAQrkjeeLmIkCB8pgQ
+
+
+Awesome links:
+
+http://www.windytan.com/

@@ -19,6 +19,8 @@ tools::
 	apt-get update
 	apt-get upgrade
 	apt-get install libboost-all-dev libusb-1.0-0-dev python-mako doxygen python-docutils cmake build-essential tmux moreutils git vim python-pip python-apt openssh-server
+	#qt stuff 
+	apt-get -y install git-core cmake g++ python-dev swig pkg-config libfftw3-dev  libcppunit-dev libgsl0-dev libusb-dev libsdl1.2-dev  python-numpy python-cheetah python-lxml doxygen libxi-dev python-sip libqt4-opengl-dev libqwt-dev libfontconfig1-dev libxrender-dev python-sip python-sip-dev
 	pip install --upgrade pip
 	userdel ubuntu
 	adduser keesj
@@ -71,3 +73,29 @@ to udev. For rtl-sdr for example::
 	sudo cp ./src/rtl-sdr/rtl-sdr.rules /etc/udev/rules.d/
 	sudo cp src/hackrf/host/libhackrf/53-hackrf.rules /etc/udev/rules.d/
 	sudo udevadm control --reload
+
+allow usb from the lxc container::
+
+	root@700z:~# cat /var/lib/lxc/lxc-sdr/config 
+	# usb
+	lxc.mount.entry = /dev/bus/usb/ dev/bus/usb/  none bind,optional,create=dir
+	lxc.cgroup.devices.allow = c 189:* rwm
+
+https://bmullan.wordpress.com/2013/11/20/how-to-enable-sound-in-lxc-linux-containers/
+/etc/pulse/default.pa::
+
+	load-module module-native-protocol-tcp
+	
+/etc/pulse/system.pa::
+
+	load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1;10.0.3.0/24
+	load-module module-zeroconf-publish
+
+
+
+gr-phosphor
+
+http://sdr.osmocom.org/trac/wiki/fosphor
+sudo apt-get install cmake xorg-dev libglu1-mesa-dev
+
+
