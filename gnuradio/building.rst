@@ -11,12 +11,27 @@ want to install the GNURadio components as root (nor the pybombs code).
 
 .. _pybombs: https://github.com/gnuradio/pybombs
 
+tools::
+
+	lxc-create -t download -n lxc-sdr -- --dist ubuntu --release yakkety --arch amd64
+	lxc-start --name lxc-sdr
+	lxc-attach --name lxc-sdr
+	apt-get update
+	apt-get upgrade
+	apt-get install libboost-all-dev libusb-1.0-0-dev python-mako doxygen python-docutils cmake build-essential tmux moreutils git vim python-pip python-apt openssh-server
+	pip install --upgrade pip
+	userdel ubuntu
+	adduser keesj
+	passwd keesj
+	gpasswd -a keesj sudo
+	vim /etclocale.gen
+	locale-gen
 
 First install pyboms in pybombs in ~/opt/pip and add the paths to PYTHONPATH and PATH
 
 install pybombs::
 
-	pip install git+https://github.com/gnuradio/pybombs.git
+	pip install --user git+https://github.com/gnuradio/pybombs.git
 
 and add the following to you bashrc to make it understand where code can be found::
 
@@ -32,6 +47,7 @@ Add the default recipes::
 Next setup a place where your GNURadio code will be. in this case my source and GNURadio will
 be in ~/projects/sdr::
 
+	mkdir ~/projects
 	pybombs prefix init ${HOME}/projects/sdr -a main
 
 Pybombs has a feature to use multiple workspaces but this is only usefull for advanced users (who might want to create a cross
@@ -41,6 +57,7 @@ compile environement) so best is to configure the above workspace to be the  the
 
 Try and install a few components::
 
+	ssh-keygen / copy authorized keys and ssh to machine (to have a controlling tty)
 	pybombs -vvv install gnuradio gr-osmosdr
 
 Add setup_env to you bashrc::
