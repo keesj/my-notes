@@ -81,16 +81,19 @@ allow usb from the lxc container::
 	lxc.mount.entry = /dev/bus/usb/ dev/bus/usb/  none bind,optional,create=dir
 	lxc.cgroup.devices.allow = c 189:* rwm
 
+
+
 https://bmullan.wordpress.com/2013/11/20/how-to-enable-sound-in-lxc-linux-containers/
 /etc/pulse/default.pa::
 
-	load-module module-native-protocol-tcp
-	
-/etc/pulse/system.pa::
+	load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1;192.168.254.0/24 auth-anonymous=1
 
-	load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1;10.0.3.0/24
-	load-module module-zeroconf-publish
+allow containers access to 4713:
 
+sudo ufw allow from 10.0.3.1/24 to 10.0.3.1 port 4713
+
+in you .bashrc:
+export PULSE_SERVER=10.0.3.1:4713
 
 
 gr-phosphor
