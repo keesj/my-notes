@@ -27,6 +27,8 @@ tools::
 	userdel ubuntu
 	adduser --disabled-password keesj
 	gpasswd -a keesj sudo
+	gpasswd -a keesj dialout
+	gpasswd -a keesj plugdev
 	#edit sudoers files or add a passwd for the user
 	su - keesj
 	ssh-keygen
