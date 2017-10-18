@@ -13,7 +13,7 @@ want to install the GNURadio components as root (nor the pybombs code).
 
 tools::
 
-	lxc-create -t download -n lxc-sdr -- --dist ubuntu --release yakkety --arch amd64
+	lxc-create -t download -n lxc-sdr -- --dist ubuntu --release xenial --arch amd64
 	lxc-start --name lxc-sdr
 	lxc-attach --name lxc-sdr
 	apt-get update
@@ -21,13 +21,16 @@ tools::
 	apt-get install libboost-all-dev libusb-1.0-0-dev python-mako doxygen python-docutils cmake build-essential tmux moreutils git vim python-pip python-apt openssh-server
 	#qt stuff 
 	apt-get -y install git-core cmake g++ python-dev swig pkg-config libfftw3-dev  libcppunit-dev libgsl0-dev libusb-dev libsdl1.2-dev  python-numpy python-cheetah python-lxml doxygen libxi-dev python-sip libqt4-opengl-dev libqwt-dev libfontconfig1-dev libxrender-dev python-sip python-sip-dev
-	pip install --upgrade pip
-	userdel ubuntu
-	adduser keesj
-	passwd keesj
-	gpasswd -a keesj sudo
 	vim /etclocale.gen
 	locale-gen
+	pip install --upgrade pip
+	userdel ubuntu
+	adduser --disabled-password keesj
+	gpasswd -a keesj sudo
+	#edit sudoers files or add a passwd for the user
+	su - keesj
+	ssh-keygen
+	vim .ssh/authorized_keys
 
 First install pyboms in pybombs in ~/opt/pip and add the paths to PYTHONPATH and PATH
 
