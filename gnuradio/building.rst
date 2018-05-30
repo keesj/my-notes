@@ -107,3 +107,6 @@ http://sdr.osmocom.org/trac/wiki/fosphor
 sudo apt-get install cmake xorg-dev libglu1-mesa-dev
 
 
+for PPA 
+apt install software-properties-common
+
